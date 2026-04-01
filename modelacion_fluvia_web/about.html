@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acerca de · Fluvia</title>
+  <link rel="stylesheet" href="css/nav-sidebar.css">
+  <link rel="stylesheet" href="css/about.css">
+</head>
+<body class="has-nav-sidebar">
+
+<!-- ══ Navigation Sidebar ══════════════════════════════════════ -->
+<nav id="nav-sidebar" aria-label="Navegación principal">
+
+  <button class="nav-toggle" aria-label="Colapsar / expandir menú">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="15 18 9 12 15 6"></polyline>
+    </svg>
+  </button>
+
+  <div class="nav-brand">
+    <div class="nav-brand-icon">🌊</div>
+    <span class="nav-brand-text">flu<em>via</em></span>
+  </div>
+
+  <ul class="nav-list" role="list">
+
+    <li class="nav-item">
+      <a class="nav-link" href="curvas_app.html" data-tooltip="Inicio">
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+        </span>
+        <span class="nav-label">Inicio</span>
+      </a>
+    </li>
+
+    <li class="nav-divider" role="separator"></li>
+
+    <li class="nav-section-label">Información</li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="about.html" data-tooltip="Acerca de">
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+        </span>
+        <span class="nav-label">Acerca de</span>
+      </a>
+    </li>
+
+  </ul>
+
+  <div class="nav-footer">
+    <div class="nav-footer-text">Fluvia v1.0.0 · 2025</div>
+  </div>
+
+</nav>
+<!-- ══ / Navigation Sidebar ════════════════════════════════════ -->
+
+<div class="about-wrapper">
+
+  <!-- Hero -->
+  <header class="about-hero">
+    <div class="about-hero-badge">🌊 Hidrología · Trazadores</div>
+    <h1>Fluvia · <span>Análisis de Dispersión</span></h1>
+    <p class="about-hero-sub">Herramienta web para el análisis de experimentos de trazadores en cuerpos de agua superficiales</p>
+    <div class="about-hero-meta">
+      <span class="about-badge">📌 v1.0.0</span>
+      <span class="about-badge">📅 2025</span>
+      <span class="about-badge">⚙️ JavaScript · Chart.js · Nelder‑Mead</span>
+    </div>
+  </header>
+
+  <!-- TOC -->
+  <nav class="about-toc" aria-label="Tabla de contenidos">
+    <h3>Contenidos</h3>
+    <ol>
+      <li><a href="#sec-objetivo">Objetivo</a></li>
+      <li><a href="#sec-flujo">Flujo del Proceso</a>
+        <ol>
+          <li><a href="#sec-ingesta">Ingesta de Datos</a></li>
+          <li><a href="#sec-viz">Visualización Interactiva</a></li>
+          <li><a href="#sec-baseline">Ajuste de Línea Base</a></li>
+          <li><a href="#sec-autoajuste">Algoritmo de Acople</a></li>
+        </ol>
+      </li>
+      <li><a href="#sec-math">Fundamento Matemático</a></li>
+    </ol>
+  </nav>
+
+  <!-- ── 1 · Objetivo ── -->
+  <section class="about-section" id="sec-objetivo">
+    <h2 class="about-section-title">
+      <span class="s-icon">🎯</span> Objetivo
+    </h2>
+    <div class="about-card">
+      <p>
+        <strong>Fluvia</strong> es una herramienta de escritorio para el análisis de experimentos de
+        trazadores en cuerpos de agua superficiales. Su objetivo principal es obtener las variables
+        de concentración y transporte hidráulico mediante el <strong>acople del modelo matemático de
+        dispersión</strong> a las curvas de concentración experimental registradas en campo.
+      </p>
+      <p>
+        Permite estimar parámetros como caudal (<strong>Q</strong>), tiempo de tránsito
+        (<strong>Tp</strong>) y coeficiente de dispersión (<strong>Φ</strong>) con alta precisión.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── 2 · Flujo del proceso ── -->
+  <section class="about-section" id="sec-flujo">
+    <h2 class="about-section-title">
+      <span class="s-icon">🔄</span> Flujo del Proceso
+    </h2>
+
+    <div class="step-list">
+
+      <!-- 2.1 Ingesta -->
+      <div class="step-card" id="sec-ingesta">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h4>📥 Ingesta de Datos</h4>
+          <p>
+            Se carga un archivo <code>.json</code> exportado desde los dispositivos de medición en
+            campo (convertido desde CSV plano). El archivo contiene series de tiempo de concentración
+            del trazador junto con los metadatos del ensayo (masa vertida, ancho del canal, distancia
+            al sensor).
+          </p>
+          <p>
+            El archivo incorpora el <strong>ajuste de tiempos de corrimiento del gatillo</strong> —
+            sincronización entre el momento de vertimiento del trazador y el encendido del dispositivo
+            de medición — garantizando que <code>t=0</code> corresponde exactamente al instante del
+            vertimiento.
+          </p>
+        </div>
+      </div>
+
+      <!-- 2.2 Visualización -->
+      <div class="step-card" id="sec-viz">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h4>📈 Visualización Interactiva</h4>
+          <p>
+            La gráfica principal muestra simultáneamente la <strong>Curva Experimental</strong>
+            (eje izquierdo, azul continuo) y la <strong>Curva del Modelo</strong> (eje derecho, naranja
+            discontinuo) con ejes duales independientes.
+          </p>
+          <p>
+            Esto permite comparar la forma de ambas curvas independientemente de la escala de
+            concentración. Un tooltip interactivo muestra los valores exactos en cualquier punto
+            temporal.
+          </p>
+        </div>
+      </div>
+
+      <!-- 2.3 Línea base -->
+      <div class="step-card" id="sec-baseline">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h4>⬛ Ajuste de Línea Base</h4>
+          <p>
+            Antes del ajuste automático, la curva experimental debe normalizarse a cero. Se calcula la
+            <strong>línea base</strong> como el promedio del percentil 10% inferior de lecturas no nulas:
+          </p>
+          <div class="code-block">
+            <pre>baseline = promedio(percentil_10%(obs &gt; 0))</pre>
+          </div>
+          <p>Cada valor observado se corrige restando este offset y truncando a cero los valores negativos resultantes:</p>
+          <div class="code-block">
+            <pre>C_corr(t) = max(0, C_obs(t) − baseline)</pre>
+          </div>
+          <p>
+            Este paso elimina el ruido de fondo del sensor y garantiza que la curva parta desde cero
+            antes del frente del trazador.
+          </p>
+        </div>
+      </div>
+
+      <!-- 2.4 Algoritmo -->
+      <div class="step-card" id="sec-autoajuste">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h4>✦ Algoritmo de Acople (Auto‑Ajuste)</h4>
+          <p>
+            El auto‑ajuste optimiza los parámetros Q, Tp y Φ minimizando el RMSE entre la curva
+            observada y la generada por <code>modelC(t, M, Q, Tp, Φ, W)</code>.
+            Se utiliza el <strong>algoritmo Nelder‑Mead (Simplex)</strong> implementado directamente
+            en JavaScript:
+          </p>
+          <ul class="algo-list">
+            <li>Operación en <strong>espacio logarítmico</strong> para manejar diferencias de escala entre parámetros.</li>
+            <li><strong>Semilla inteligente</strong>: Q inicial derivado analíticamente del pico observado.</li>
+            <li><strong>500 iteraciones</strong> ejecutadas en chunks asíncronos para no bloquear la interfaz.</li>
+            <li>La masa M permanece <strong>constante</strong> durante el ajuste (controlada manualmente por el usuario).</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── 3 · Fundamento matemático ── -->
+  <section class="about-section" id="sec-math">
+    <h2 class="about-section-title">
+      <span class="s-icon">📐</span> Fundamento Matemático
+    </h2>
+
+    <p style="font-size:14px;color:var(--txt2);margin-bottom:16px;">
+      Modelo de concentración de trazador para flujo en canal:
+    </p>
+
+    <div class="formula-display">
+      <div class="f-label">C(t) — Concentración del trazador en función del tiempo</div>
+      <div class="formula-text">
+        C(t) = (<b>M</b> / (<b>W</b> · <b>Q</b> · √(4π·<b>Φ</b>·t³/<b>Q</b>²)))
+        · exp(−(t − <b>Tp</b>)² · <b>Q</b>² / (4·<b>Φ</b>·t))
+      </div>
+    </div>
+
+    <table class="about-table">
+      <thead>
+        <tr>
+          <th>Parámetro</th>
+          <th>Descripción</th>
+          <th>Unidad</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="param-sym">M</span></td>
+          <td>Masa del trazador vertida</td>
+          <td>g</td>
+        </tr>
+        <tr>
+          <td><span class="param-sym">Q</span></td>
+          <td>Caudal</td>
+          <td>m³/s</td>
+        </tr>
+        <tr>
+          <td><span class="param-sym">Tp</span></td>
+          <td>Tiempo de tránsito al pico</td>
+          <td>s</td>
+        </tr>
+        <tr>
+          <td><span class="param-sym">Φ</span></td>
+          <td>Coeficiente de dispersión longitudinal</td>
+          <td>m²/s</td>
+        </tr>
+        <tr>
+          <td><span class="param-sym">W</span></td>
+          <td>Ancho del canal</td>
+          <td>m</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="info-box">
+      <strong>Nota:</strong> El modelo asume flujo unidimensional, mezcla completa en la sección
+      transversal y dispersión longitudinal dominada por gradientes de velocidad.
+      La función de concentración es la solución analítica de la ecuación de advección‑difusión
+      para una inyección instantánea de masa en un canal de ancho uniforme.
+    </div>
+  </section>
+
+</div><!-- /.about-wrapper -->
+
+<script src="js/nav-sidebar.js"></script>
+</body>
+</html>
