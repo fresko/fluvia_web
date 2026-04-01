@@ -1,0 +1,66 @@
+/* Base styles for Modelación Fluvial Web */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f8fb;
+    color: #333;
+}
+
+header {
+    background-color: #1a73a7;
+    color: #fff;
+    padding: 1rem 2rem;
+}
+
+header h1 {
+    font-size: 1.6rem;
+}
+
+nav {
+    background-color: #135d87;
+    padding: 0.5rem 2rem;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 1.5rem;
+    font-size: 0.95rem;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+main {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+section {
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+section h2 {
+    margin-bottom: 0.75rem;
+    color: #1a73a7;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #1a73a7;
+    color: #fff;
+    font-size: 0.85rem;
+}
