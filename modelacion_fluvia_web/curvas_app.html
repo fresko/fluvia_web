@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fluvia · Curvas de Trazador</title>
+<link rel="stylesheet" href="css/nav-sidebar.css">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -13,7 +14,8 @@
   --txt:#0f172a;--txt2:#334155;--muted:#64748b;--muted2:#94a3b8;
   --tag-bg:#eff6ff;--tag-brd:#bfdbfe;--tag-txt:#1d4ed8;
 }
-body{background:var(--bg);color:var(--txt);font-family:'Segoe UI',system-ui,sans-serif;height:100vh;overflow:hidden;display:flex;flex-direction:column}
+body{background:var(--bg);color:var(--txt);font-family:'Segoe UI',system-ui,sans-serif;height:100vh;overflow:hidden;display:flex;flex-direction:column;padding-left:var(--nav-w-collapsed);transition:padding-left .22s cubic-bezier(.4,0,.2,1)}
+body.nav-expanded{padding-left:var(--nav-w-expanded)}
 
 header{display:flex;align-items:center;justify-content:space-between;padding:9px 20px;background:var(--surf);border-bottom:1px solid var(--bord);flex-shrink:0;box-shadow:0 1px 3px rgba(0,0,0,.05)}
 .logo{display:flex;align-items:center;gap:8px}
@@ -167,7 +169,61 @@ table.data-table tbody tr.peak-row td:first-child{color:var(--mod)}
 .ts-item b{font-family:monospace;color:var(--txt2);font-size:11px}
 </style>
 </head>
-<body>
+<body class="has-nav-sidebar">
+
+<!-- ══ Navigation Sidebar ══════════════════════════════════════ -->
+<nav id="nav-sidebar" aria-label="Navegación principal">
+
+  <button class="nav-toggle" aria-label="Colapsar / expandir menú">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="15 18 9 12 15 6"></polyline>
+    </svg>
+  </button>
+
+  <div class="nav-brand">
+    <div class="nav-brand-icon">🌊</div>
+    <span class="nav-brand-text">flu<em>via</em></span>
+  </div>
+
+  <ul class="nav-list" role="list">
+
+    <li class="nav-item">
+      <a class="nav-link" href="curvas_app.html" data-tooltip="Inicio">
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+        </span>
+        <span class="nav-label">Inicio</span>
+      </a>
+    </li>
+
+    <li class="nav-divider" role="separator"></li>
+
+    <li class="nav-section-label">Información</li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="about.html" data-tooltip="Acerca de">
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+        </span>
+        <span class="nav-label">Acerca de</span>
+      </a>
+    </li>
+
+  </ul>
+
+  <div class="nav-footer">
+    <div class="nav-footer-text">Fluvia v1.0.0 · 2025</div>
+  </div>
+
+</nav>
+<!-- ══ / Navigation Sidebar ════════════════════════════════════ -->
 
 <div id="drop-overlay">
   <div style="font-size:20px;font-weight:700;color:#2563eb">📂 Suelta el archivo JSON</div>
@@ -881,5 +937,6 @@ dz.addEventListener('dragover',e=>{e.stopPropagation();e.preventDefault();dz.cla
 dz.addEventListener('dragleave',()=>dz.classList.remove('drag'));
 dz.addEventListener('drop',e=>{e.stopPropagation();e.preventDefault();dz.classList.remove('drag');const f=e.dataTransfer?.files?.[0];if(f)handleFile(f);});
 </script>
+<script src="js/nav-sidebar.js"></script>
 </body>
 </html>

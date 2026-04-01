@@ -1,0 +1,419 @@
+/* ── About Page – Technical Documentation Style ───────────── */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #f8fafc;
+  --surf: #ffffff;
+  --surf2: #f1f5f9;
+  --bord: #e2e8f0;
+  --bord2: #cbd5e1;
+  --txt: #0f172a;
+  --txt2: #334155;
+  --muted: #64748b;
+  --muted2: #94a3b8;
+  --accent: #0891b2;
+  --accent2: #2563eb;
+  --grn: #059669;
+  --code-bg: #f8f9fc;
+  --code-bord: #e2e8f0;
+  --tag-bg: #eff6ff;
+  --tag-bord: #bfdbfe;
+  --tag-txt: #1d4ed8;
+  --nav-w: 56px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--txt);
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* ── Page wrapper ── */
+.about-wrapper {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 80px;
+}
+
+/* ── Hero ── */
+.about-hero {
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0c4a6e 100%);
+  border-radius: 16px;
+  padding: 40px 48px;
+  margin-bottom: 40px;
+  color: #f1f5f9;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-hero::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56,189,248,.18) 0%, transparent 70%);
+}
+
+.about-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(56,189,248,.15);
+  border: 1px solid rgba(56,189,248,.3);
+  color: #7dd3fc;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
+
+.about-hero h1 {
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1.2;
+  margin: 0 0 10px;
+  letter-spacing: -.5px;
+}
+
+.about-hero h1 span {
+  color: #38bdf8;
+}
+
+.about-hero-sub {
+  font-size: 14px;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.about-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.about-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  color: #cbd5e1;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 6px;
+}
+
+/* ── TOC ── */
+.about-toc {
+  background: var(--surf);
+  border: 1px solid var(--bord);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 36px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.05);
+}
+
+.about-toc h3 {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  color: var(--muted);
+  margin: 0 0 12px;
+}
+
+.about-toc ol {
+  padding-left: 20px;
+  margin: 0;
+}
+
+.about-toc li {
+  margin-bottom: 5px;
+}
+
+.about-toc a {
+  color: var(--accent2);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  transition: color .15s;
+}
+
+.about-toc a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+/* ── Sections ── */
+.about-section {
+  margin-bottom: 40px;
+}
+
+.about-section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--txt);
+  margin: 0 0 16px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--bord);
+}
+
+.about-section-title .s-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 7px;
+  flex-shrink: 0;
+}
+
+.about-section-title .s-icon {
+  font-size: 18px;
+}
+
+/* ── Cards ── */
+.about-card {
+  background: var(--surf);
+  border: 1px solid var(--bord);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 14px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.04);
+}
+
+.about-card p {
+  margin: 0 0 10px;
+  font-size: 14px;
+  color: var(--txt2);
+}
+
+.about-card p:last-child { margin-bottom: 0; }
+
+.about-card strong {
+  color: var(--txt);
+}
+
+/* ── Code blocks ── */
+.code-block {
+  background: var(--code-bg);
+  border: 1px solid var(--code-bord);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin: 12px 0;
+  overflow-x: auto;
+}
+
+.code-block pre {
+  margin: 0;
+  font-family: 'Courier New', 'Consolas', monospace;
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--txt2);
+}
+
+code {
+  font-family: 'Courier New', 'Consolas', monospace;
+  font-size: 12px;
+  background: var(--code-bg);
+  border: 1px solid var(--code-bord);
+  border-radius: 4px;
+  padding: 1px 6px;
+  color: #be123c;
+}
+
+/* ── Parameter table ── */
+.about-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin: 14px 0;
+}
+
+.about-table thead th {
+  background: var(--surf2);
+  padding: 8px 14px;
+  text-align: left;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 2px solid var(--bord2);
+}
+
+.about-table tbody td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--bord);
+  color: var(--txt2);
+  vertical-align: top;
+}
+
+.about-table tbody tr:last-child td { border-bottom: none; }
+
+.about-table tbody tr:hover td {
+  background: var(--tag-bg);
+}
+
+.about-table .param-sym {
+  font-family: 'Courier New', monospace;
+  font-weight: 700;
+  color: #be123c;
+  background: rgba(190,18,60,.06);
+  border: 1px solid rgba(190,18,60,.15);
+  border-radius: 4px;
+  padding: 1px 6px;
+  white-space: nowrap;
+}
+
+/* ── Step cards ── */
+.step-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.step-card {
+  display: flex;
+  gap: 16px;
+  background: var(--surf);
+  border: 1px solid var(--bord);
+  border-radius: 10px;
+  padding: 18px 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.04);
+  transition: box-shadow .18s;
+}
+
+.step-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+}
+
+.step-num {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  border-radius: 8px;
+  margin-top: 2px;
+  box-shadow: 0 2px 8px rgba(8,145,178,.3);
+}
+
+.step-body h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--txt);
+  margin: 0 0 6px;
+}
+
+.step-body p {
+  font-size: 13px;
+  color: var(--txt2);
+  margin: 0 0 8px;
+}
+
+.step-body p:last-child { margin-bottom: 0; }
+
+/* ── Formula ── */
+.formula-display {
+  background: var(--surf);
+  border: 1px solid var(--bord);
+  border-radius: 10px;
+  padding: 20px 24px;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,.04);
+  margin-bottom: 20px;
+}
+
+.formula-display .f-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .6px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.formula-display .formula-text {
+  font-family: 'Courier New', monospace;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--txt);
+  line-height: 2.2;
+}
+
+.formula-display .formula-text b { color: #be123c; }
+
+/* ── Highlight box ── */
+.info-box {
+  background: linear-gradient(135deg, rgba(56,189,248,.07), rgba(37,99,235,.07));
+  border: 1px solid rgba(56,189,248,.25);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin: 16px 0;
+  font-size: 13px;
+  color: var(--txt2);
+}
+
+.info-box strong { color: var(--txt); }
+
+/* ── Algorithm bullet list ── */
+.algo-list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.algo-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--txt2);
+}
+
+.algo-list li::before {
+  content: '▸';
+  color: var(--accent);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .about-wrapper { padding: 24px 16px 60px; }
+  .about-hero { padding: 28px 24px; }
+  .about-hero h1 { font-size: 1.5rem; }
+  .step-card { flex-direction: column; gap: 10px; }
+}
